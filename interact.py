@@ -6,7 +6,9 @@ chars = {
     "b": Circle(Point(50, 50), 10)
     }
 
-win = GraphWin("map", 1000, 600)
+HEIGHT = 10
+WIDTH = 10
+win = GraphWin("map", WIDTH, HEIGHT)
 
 
 def main():
@@ -16,13 +18,20 @@ def main():
 
     
 def graph():
+    HEIGHT = int(input("What is the height of the map?\n"))
+    WIDTH = int(input("What is the height of the map?\n"))
+    imgpath = input("What picture do you want to use for the map\n")
+    win.close()
+    win = GraphWin("map", WIDTH, HEIGHT)
+    
+    for char in chars:
+        chars[char].draw(win)
 
-
-    img = Image(Point(500,300), "tavern.PNG")
+    img = Image(Point(WIDTH/2, HEIGHT/2), imgpath)
     img.draw(win)
     # draw grid
-    for x in range(math.floor(1000/50)):
-        for y in range(math.floor(600/50)):
+    for x in range(math.floor(WIDTH/50)):
+        for y in range(math.floor(HEIGHT/50)):
             win.plotPixel(x*50, y*50, "black")
 
 
