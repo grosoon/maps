@@ -6,24 +6,38 @@ chars = {
     "b": Circle(Point(50, 50), 10)
     }
 
-win = GraphWin("map", 1000, 600)
+HEIGHT = 10
+WIDTH = 10
+win = GraphWin("map", WIDTH, HEIGHT)
 
 
 def main():
-
+    
     graph()
     get_input()
 
     
 def graph():
-
-
-    img = Image(Point(500,300), "tavern.PNG")
+    global win
+    global WIDTH
+    global HEIGHT
+    imgpath = input("What picture do you want to use for the map\n")
+    win.close()
+    img = Image(Point(0,0), imgpath)
+    WIDTH = img.getWidth()
+    HEIGHT = img.getHeight()
+    img.move(WIDTH/2, HEIGHT/2)
+    win = GraphWin("map", WIDTH, HEIGHT)
+    xsize = int(input("What is the width of the image in feet?\n"))
+    ysize = int(input("What is the height of the image in feet?\n"))
+    
     img.draw(win)
+    for char in chars:
+        chars[char].draw(win)
     # draw grid
-    for x in range(math.floor(1000/50)):
-        for y in range(math.floor(600/50)):
-            win.plotPixel(x*50, y*50, "black")
+    for x in range(math.floor(xsize/10)):
+        for y in range(math.floor(ysize/10)):
+            win.plotPixel(x*WIDTH/xsize, y*HEIGHT/ysize, "black")
 
 
 def get_input():
@@ -60,9 +74,11 @@ def add():
         elif choice == "Circle":
             chosen = 0
             color = input("What color do you want the circle to be?\n")
-            chars[name] = Circle(Point(x, y), 25)
-            chars[name].setFill(color)
-            chars[name].draw(win)
+            num = int(input("How many do you want to create?\n"))
+            for i in range(num):
+                chars[name+str(i)] = Circle(Point(x, y), 25)
+                chars[name+str(i)].setFill(color)
+                chars[name+str(i)].draw(win)
         else:
             print("Please enter a valid choice")
             
