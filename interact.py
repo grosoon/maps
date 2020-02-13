@@ -70,9 +70,11 @@ def add():
         elif choice == "Circle":
             chosen = 0
             color = input("What color do you want the circle to be?\n")
-            chars[name] = Circle(Point(x, y), 25)
-            chars[name].setFill(color)
-            chars[name].draw(win)
+            num = int(input("How many do you want to create?\n"))
+            for i in range(num):
+                chars[name+str(i)] = Circle(Point(x, y), 25)
+                chars[name+str(i)].setFill(color)
+                chars[name+str(i)].draw(win)
         else:
             print("Please enter a valid choice")
             
