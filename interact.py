@@ -18,21 +18,22 @@ def main():
 
     
 def graph():
-    HEIGHT = int(input("What is the height of the map?\n"))
-    WIDTH = int(input("What is the height of the map?\n"))
     imgpath = input("What picture do you want to use for the map\n")
     win.close()
+    img = Image(Point(WIDTH/2, HEIGHT/2), imgpath)
+    WIDTH = img.getWidth()
+    HEIGHT = img.getHeight()
     win = GraphWin("map", WIDTH, HEIGHT)
+    xsize = int(input("What is the width of the image in feet?\n"))
+    ysize = int(input("What is the height of the image in feet?\n"))
     
+    img.draw(win)
     for char in chars:
         chars[char].draw(win)
-
-    img = Image(Point(WIDTH/2, HEIGHT/2), imgpath)
-    img.draw(win)
     # draw grid
-    for x in range(math.floor(WIDTH/50)):
-        for y in range(math.floor(HEIGHT/50)):
-            win.plotPixel(x*50, y*50, "black")
+    for x in range(math.floor(xsize/10)):
+        for y in range(math.floor(ysize/10)):
+            win.plotPixel(x*WIDTH/xsize, y*HEIGHT/ysize, "black")
 
 
 def get_input():
