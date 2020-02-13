@@ -12,17 +12,21 @@ win = GraphWin("map", WIDTH, HEIGHT)
 
 
 def main():
-
+    
     graph()
     get_input()
 
     
 def graph():
+    global win
+    global WIDTH
+    global HEIGHT
     imgpath = input("What picture do you want to use for the map\n")
     win.close()
-    img = Image(Point(WIDTH/2, HEIGHT/2), imgpath)
+    img = Image(Point(0,0), imgpath)
     WIDTH = img.getWidth()
     HEIGHT = img.getHeight()
+    img.move(WIDTH/2, HEIGHT/2)
     win = GraphWin("map", WIDTH, HEIGHT)
     xsize = int(input("What is the width of the image in feet?\n"))
     ysize = int(input("What is the height of the image in feet?\n"))
